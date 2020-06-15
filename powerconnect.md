@@ -188,7 +188,6 @@ console(config)# exit
 </p>
 </details>
 
-<br/>
 
 Configure a switch port for general mode:
 <br/>
