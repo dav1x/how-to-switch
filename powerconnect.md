@@ -187,6 +187,24 @@ console(config)# exit
 
 <br/>
 
+
+Configure a range of ports:
+<br/>
+(native)
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface range gigabitethernet 1/0/1-32
+console(config)# description alltheports
+console(config)# switchport access vlan 150
+console(config)# exit
+```
+
+</p>
+</details>
+
 ## Troubleshooting
 
 
@@ -287,3 +305,52 @@ unit image1      image2      current-active next-active
 
 </p>
 </details>
+
+
+## Anatomy of a running config
+
+```bash
+console#show running-config
+
+!Current Configuration:
+!System Description "PowerConnect M6348, 5.1.16.1, VxWorks 6.6"
+!System Software Version 5.1.16.1 # Firmware version
+!System Operational Mode "Normal"
+!
+configure
+vlan 150  # VLAN database
+exit
+vlan 150
+name "e2e-oobmgmt"
+exit
+slot 1/0 1    ! PowerConnect M6348 # Stack information
+stack
+member 1 1    ! PCM6348
+exit
+interface out-of-band # Management IP address
+ip address 10.x.y.98 255.255.255.0 10.x.y.254
+exit
+interface vlan 1 1
+exit
+interface vlan 150 6
+exit
+username "root" password danjndjawjdnajndjadjawndjw privilege 15 encrypted # root password and encryption
+line ssh # ssh enabled
+exec-timeout 60
+enable authentication enableList
+exit
+ip ssh server # ssh enabled
+interface Gi1/0/1 # blade facing 1G host port
+description "bm-hyper2"
+switchport access vlan 150
+exit
+..omitted..
+interface Te1/0/1 # 10G uplink port
+description "juniper-vc0-xe6/0/2"
+switchport mode trunk
+exit
+!
+snmp-server engineid local 800002a203f48e3840a725 # SNMP information
+snmp-server community "switches" ro ipaddress 10.x.y.55
+exit
+```
