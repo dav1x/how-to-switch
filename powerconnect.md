@@ -1,6 +1,6 @@
 # Dell PowerConnect how-to
 
-<font size="+2">Basic CLI usage</font>
+<bold><font size="+2">Basic CLI usage</font></bold>
 
 Show the running config:
 <details><summary>show</summary>
@@ -61,7 +61,7 @@ Are you sure you want to save? (y/n)
 </details>
 
 
-<font size="+2">VLAN Configuration</font>
+<bold><font size="+2">VLAN Configuration</font></bold>
 
 Show VLANs configured on the switch:
 <details><summary>show</summary>
@@ -149,7 +149,7 @@ Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
 </p>
 </details>
 
-<font size="+2">Configuring Switch Ports</font>
+<bold><font size="+2">Configuring Switch Ports</font></bold>
 
 Configure a Switch Port for Access Mode:
 <br/>
@@ -187,7 +187,7 @@ console(config)# exit
 
 <br/>
 
-<font size="+2">Troubleshooting</font>
+<bold><font size="+2">Troubleshooting</font></bold>
 
 
 Show spanning tree information or find a blocked switch port:
