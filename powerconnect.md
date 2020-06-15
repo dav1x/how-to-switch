@@ -259,3 +259,31 @@ Buffer Log:
 
 </p>
 </details>
+
+Check Switch Firmware Revision:
+
+<details><summary>show</summary>
+<p>
+
+```bash
+
+console#show version
+
+System Description................ Dell Ethernet Switch
+System Up Time.................... 33 days, 15h:51m:10s
+System Contact....................
+System Name.......................
+System Location...................
+Burned In MAC Address............. XXXX.XXXX.XXXX
+System Object ID.................. 1.3.6.1.4.1.674.10895.3025
+System Model ID................... PCM6348
+Machine Type...................... PowerConnect M6348
+
+unit image1      image2      current-active next-active
+---- ----------- ----------- -------------- --------------
+1    5.1.16.1    5.1.10.1    image1         image1
+
+```
+
+</p>
+</details>
