@@ -1,5 +1,68 @@
 # Dell PowerConnect how-to
 
+<font size="+2">Basic CLI usage</font>
+
+Show the running config:
+<details><summary>show</summary>
+<p>
+
+```bash
+
+console#show running-config
+
+!Current Configuration:
+!System Description "PowerConnect M6348, 5.1.16.1, VxWorks 6.6"
+!System Software Version 5.1.16.1
+!System Operational Mode "Normal"
+!
+configure
+vlan 150,152-155,183,3800,3807
+exit
+vlan 150
+name "e2e-oobmgmt"
+
+```
+
+</p>
+</details>
+
+
+Search for some output from a command:
+<details><summary>show</summary>
+<p>
+
+```bash
+
+console#show running-config | include 1/0/2
+
+interface Gi1/0/2
+
+```
+
+</p>
+</details>
+
+Save the running config to startup:
+<details><summary>show</summary>
+<p>
+
+```bash
+
+console#copy running-config startup-config
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n)
+
+```
+
+</p>
+</details>
+
+
+<font size="+2">VLAN Configuration</font>
+
 Show VLANs configured on the switch:
 <details><summary>show</summary>
 <p>
@@ -52,40 +115,6 @@ console(config)# exit
 </p>
 </details>
 
-
-Configure a switch port for access mode:
-(native)
-<details><summary>show</summary>
-<p>
-
-```bash
-console# configure
-console(config)# interface Gi1/0/1
-console(config)# description usefuldescription
-console(config)# switchport access vlan 150
-console(config)# exit
-```
-
-</p>
-</details>
-
-Configure a switch port for trunk mode:
-(Dell PowerConnects allow all VLANs in the VLAN database in trunk mode)
-<details><summary>show</summary>
-<p>
-
-```bash
-console# configure
-console(config)# interface Gi1/0/1
-console(config)# description usefuldescription
-console(config)# switchport mode trunk
-console(config)# exit
-```
-
-</p>
-</details>
-
-
 View MAC address (layer 2) traffic details:
 <details><summary>show</summary>
 <p>
@@ -120,7 +149,45 @@ Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
 </p>
 </details>
 
+<font size="+2">Configuring Switch Ports</font>
 
+Configure a Switch Port for Access Mode:
+<br/>
+(native)
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface Gi1/0/1
+console(config)# description usefuldescription
+console(config)# switchport access vlan 150
+console(config)# exit
+```
+
+</p>
+</details>
+
+Configure a switch port for trunk mode:
+<br/>
+(Dell PowerConnects allow all VLANs in the VLAN database in trunk mode)
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface Gi1/0/1
+console(config)# description usefuldescription
+console(config)# switchport mode trunk
+console(config)# exit
+```
+
+</p>
+</details>
+
+<br/>
+
+<font size="+2">Troubleshooting</font>
 
 
 Show spanning tree information or find a blocked switch port:
@@ -154,6 +221,39 @@ Gi1/0/1  Enabled  128.1     20000     FWD  Desg  No
 Gi1/0/2  Enabled  128.2     20000     FWD  Desg  No
 Gi1/0/3  Enabled  128.3     20000     FWD  Desg  No
 Gi1/0/4  Enabled  128.4     20000     FWD  Desg  No
+
+```
+
+</p>
+</details>
+
+
+Show switch logs:
+
+<details><summary>show</summary>
+<p>
+
+```bash
+
+console#show logging
+
+Logging is enabled
+Console Logging: Level warnings. Messages : 1 logged, 24284 ignored
+Monitor Logging: disabled
+Buffer Logging: Level informational. Messages : 23662 logged, 623 ignored
+File Logging: Level emergencies. Messages : 0 logged, 24285 ignored
+Switch Auditing : enabled
+CLI Command Logging: disabled
+Web Session Logging : disabled
+SNMP Set Command Logging : disabled
+Logging facility level : local7
+425 Messages dropped due to lack of resources
+Buffer Log:
+<190> Oct 14 00:38:38 10.19.0.98-1 CLI_WEB[219199344]: cmd_logger_api.c(260) 24285 %% [CLI:----:EIA-232] User ---- logged in to enable mode.
+<190> Oct 14 00:36:02 10.19.0.98-1 CLI_WEB[213919568]: cmd_logger_api.c(260) 24284 %% [CLI:----:EIA-232] Disconnected due to Idle Timeout
+<190> Oct 14 00:22:00 10.19.0.98-1 CLI_WEB[219199344]: cmd_logger_api.c(260) 24283 %% [CLI:----:EIA-232] User ---- logged in to enable mode.
+<189> Oct 13 23:24:00 10.19.0.98-1 TRAPMGR[277167328]: traputil.c(638) 24282 %% Spanning Tree Topology Change Received: MSTID: 0 Te1/0/2
+<189> Oct 13 23:23:59 10.19.0.98-1 TRAPMGR[277167328]: traputil.c(638) 24281 %% Spanning Tree Topology Change Received: MSTID: 0 Te1/0/2
 
 ```
 
