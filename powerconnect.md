@@ -382,7 +382,7 @@ console(config)# exit
 </details>
 3. Ensure the VLAN is assigned to blade 4.
 <br/>
-(Dell PowerConnects allow all VLANs in the VLAN database in trunk mode)
+HINT: Dell PowerConnects allow all VLANs in the VLAN database in trunk mode
 <details><summary>show</summary>
 <p>
 
