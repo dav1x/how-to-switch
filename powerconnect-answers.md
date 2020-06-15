@@ -1,10 +1,9 @@
 # Dell PowerConnect how-to
-For a copy of this page without the dropdowns see [the answer page](powerconnect-answers.md)
 
 ## Basic CLI usage
 
 Show the running config:
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -25,11 +24,11 @@ name "e2e-oobmgmt"
 ```
 
 </p>
-</details>
+
 
 
 Search for some output from a command:
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -41,10 +40,10 @@ interface Gi1/0/2
 ```
 
 </p>
-</details>
+
 
 Save the running config to startup:
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -59,13 +58,13 @@ Are you sure you want to save? (y/n)
 ```
 
 </p>
-</details>
+
 
 
 ## VLAN Configuration
 
 Show VLANs configured on the switch:
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -80,11 +79,11 @@ VLAN   Name                             Ports          Type
 ```
 
 </p>
-</details>
+
 
 or
 
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -98,12 +97,12 @@ Gi1/0/1    bm-hyper2                  Full    1000     Auto  Up     Active
 ```
 
 </p>
-</details>
+
 
 
 
 Add a new VLAN to the switch:
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -114,10 +113,10 @@ console(config)# exit
 ```
 
 </p>
-</details>
+
 
 View MAC address (layer 2) traffic details:
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -133,7 +132,7 @@ Vlan     Mac Address           Type        Port
 ```
 
 </p>
-</details>
+
 
 
 ## Configuring Switch Ports
@@ -141,7 +140,7 @@ Vlan     Mac Address           Type        Port
 Shut down a port:
 <br/>
 (native)
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -152,12 +151,12 @@ console(config)# exit
 ```
 
 </p>
-</details>
+
 
 Configure a Switch Port for Access Mode:
 <br/>
 (native)
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -169,12 +168,12 @@ console(config)# exit
 ```
 
 </p>
-</details>
+
 
 Configure a switch port for trunk mode:
 <br/>
 (Dell PowerConnects allow all VLANs in the VLAN database in trunk mode)
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -186,7 +185,7 @@ console(config)# exit
 ```
 
 </p>
-</details>
+
 
 <br/>
 
@@ -194,7 +193,7 @@ console(config)# exit
 Configure a range of ports:
 <br/>
 (native)
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -206,14 +205,14 @@ console(config)# exit
 ```
 
 </p>
-</details>
+
 
 ## Troubleshooting
 
 
 Show spanning tree information or find a blocked switch port:
 
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -246,12 +245,12 @@ Gi1/0/4  Enabled  128.4     20000     FWD  Desg  No
 ```
 
 </p>
-</details>
+
 
 
 Show switch logs:
 
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -279,11 +278,11 @@ Buffer Log:
 ```
 
 </p>
-</details>
+
 
 Check Switch Firmware Revision:
 
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -307,10 +306,10 @@ unit image1      image2      current-active next-active
 ```
 
 </p>
-</details>
+
 
 Find an upstream switch link:
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -322,11 +321,11 @@ Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
 ```
 
 </p>
-</details>
+
 
 Show switch port counters:
 
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -349,13 +348,13 @@ Excessive Collisions: ......................... 0
 ```
 
 </p>
-</details>
+
 
 ## Scenario
 You have been tasked with adding routable VLAN 165 to a switch and ensure connectivity. You need to identify which port is the uplink and add the applicable VLAN to the host ports in question. Blades 1, 2, 3 will be used for VLAN 165 as the native VLAN. Blade 4 will tag the VLAN inside the operating system.
 
 1. Add the VLAN
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -366,9 +365,9 @@ console(config)# exit
 ```
 
 </p>
-</details>
+
 2. Add the native VLANs to blades 1,2,3.
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -380,11 +379,11 @@ console(config)# exit
 ```
 
 </p>
-</details>
+
 3. Ensure the VLAN is assigned to blade 4.
 <br/>
 HINT: Dell PowerConnects allow all VLANs in the VLAN database in trunk mode
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -414,9 +413,9 @@ Trunking Mode VLANs Enabled: All
 ```
 
 </p>
-</details>
+
 4. Identify the uplink port and make sure the VLAN is assigned to it.
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -428,9 +427,9 @@ Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
 ```
 
 </p>
-</details>
+
 5. Verify layer 2 connectivity on the switch.
-<details><summary>show</summary>
+<summary>show</summary>
 <p>
 
 ```bash
@@ -448,7 +447,7 @@ Aging time is 300 Sec
 ```
 
 </p>
-</details>
+
 
 ## Anatomy of a running config
 
@@ -497,3 +496,4 @@ snmp-server engineid local 800002a203f48e3840a725 # SNMP information
 snmp-server community "switches" ro ipaddress 10.x.y.55
 exit
 ```
+
