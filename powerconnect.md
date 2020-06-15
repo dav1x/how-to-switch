@@ -37,6 +37,8 @@ Gi1/0/1    bm-hyper2                  Full    1000     Auto  Up     Active
 </details>
 
 Find an upstream switch link
+<details><summary>show</summary>
+<p>
 
 ```bash
 console# show  lldp remote-device all
