@@ -190,6 +190,25 @@ console(config)# exit
 
 <br/>
 
+Configure a switch port for general mode:
+<br/>
+(Dell PowerConnects allow all VLANs in the VLAN database in trunk mode)
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface Gi1/0/1
+console(config)# description usefuldescription
+console(config)# switchport mode general
+console(config)# switchport general pvid 150
+console(config)# switchport general allowed vlan add 101, 102, 310 tagged
+console(config)# exit
+```
+
+</p>
+</details>
+
 
 Configure a range of ports:
 <br/>
@@ -382,7 +401,7 @@ image1 : default image
 image2 :
 Images currently available on Flash
 --------------------------------------------------------------------
-unit image1     image2    current-active  next-active 
+unit image1     image2    current-active  next-active
 --------------------------------------------------------------------
 1    4.2.1.3    5.1.16.1  image1          image1
 

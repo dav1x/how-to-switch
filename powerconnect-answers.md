@@ -186,6 +186,23 @@ console(config)# exit
 
 </p>
 
+Configure a switch port for general mode:
+<br/>
+(General mode allows you to set a native VLAN but allow for multiple VLANs)
+<summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface Gi1/0/1
+console(config)# description usefuldescription
+console(config)# switchport mode general
+console(config)# switchport general pvid 150
+console(config)# switchport general allowed vlan add 101, 102, 310 tagged
+console(config)# exit
+```
+
+</p>
 
 <br/>
 
