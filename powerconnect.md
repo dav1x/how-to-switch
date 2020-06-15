@@ -364,7 +364,8 @@ console#copy tftp://10.10.10.200/PC8024v5.1.16.1.stk image
 Transfer Mode.................................. TFTP
 Server IP Address.............................. 10.10.10.200
 Source File Path............................... /
-Source Filename................................ PC8024v5.1.16.1.stk Data Type...................................... Code
+Source Filename................................ PC8024v5.1.16.1.stk
+Data Type...................................... Code
 Destination Filename........................... image
 
 Management access will be blocked for the duration of the transfer
@@ -381,8 +382,9 @@ image1 : default image
 image2 :
 Images currently available on Flash
 --------------------------------------------------------------------
-unit image1 image2 current-active next-active --------------------------------------------------------------------
-1    4.2.1.3    5.1.16.1  image1  image1
+unit image1     image2    current-active  next-active 
+--------------------------------------------------------------------
+1    4.2.1.3    5.1.16.1  image1          image1
 
 console# boot system image2
 Activating image image2 ..
