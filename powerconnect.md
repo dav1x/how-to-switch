@@ -36,6 +36,25 @@ Gi1/0/1    bm-hyper2                  Full    1000     Auto  Up     Active
 </p>
 </details>
 
+
+
+Add a new VLAN to the switch
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# vlan database
+console(config)# vlan 12
+console(config)# exit
+```
+
+</p>
+</details>
+
+
+
+
 Find an upstream switch link
 <details><summary>show</summary>
 <p>
