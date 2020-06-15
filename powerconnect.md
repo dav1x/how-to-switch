@@ -134,22 +134,24 @@ Vlan     Mac Address           Type        Port
 </p>
 </details>
 
-Find an upstream switch link:
+
+## Configuring Switch Ports
+
+Shut down a port:
+<br/>
+(native)
 <details><summary>show</summary>
 <p>
 
 ```bash
-console# show  lldp remote-device all
-
-..omitted..
-Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
-
+console# configure
+console(config)# interface Gi1/0/1
+console(config)# shutdown
+console(config)# exit
 ```
 
 </p>
 </details>
-
-## Configuring Switch Ports
 
 Configure a Switch Port for Access Mode:
 <br/>
@@ -306,6 +308,143 @@ unit image1      image2      current-active next-active
 </p>
 </details>
 
+Find an upstream switch link:
+<details><summary>show</summary>
+<p>
+
+```bash
+console# show  lldp remote-device all
+
+..omitted..
+Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
+
+```
+
+</p>
+</details>
+
+Show switch port counters:
+
+<details><summary>show</summary>
+<p>
+
+```bash
+
+console#show interfaces counters gi1/0/1
+
+  Port      InTotalPkts      InUcastPkts      InMcastPkts      InBcastPkts
+--------- ---------------- ---------------- ---------------- ----------------
+Gi1/0/1           12778926         12647225           131316              385
+
+  Port      OutTotalPkts     OutUcastPkts     OutMcastPkts     OutBcastPkts
+--------- ---------------- ---------------- ---------------- ----------------
+Gi1/0/1          124119278         69159295         44478037         10481946
+
+FCS Errors: ................................... 0
+Single Collision Frames: ...................... 0
+Late Collisions: .............................. 0
+Excessive Collisions: ......................... 0
+
+```
+
+</p>
+</details>
+
+## Scenario
+You have been tasked with adding routable VLAN 165 to a switch and ensure connectivity. You need to identify which port is the uplink and add the applicable VLAN to the host ports in question. Blades 1, 2, 3 will be used for VLAN 165 as the native VLAN. Blade 4 will tag the VLAN inside the operating system.
+
+1. Add the VLAN
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# vlan database
+console(config)# vlan 165
+console(config)# exit
+```
+
+</p>
+</details>
+2. Add the native VLANs to blades 1,2,3.
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface range Gi1/0/1-3
+console(config)# description new_BM_hosts
+console(config)# switchport access vlan 165
+console(config)# exit
+```
+
+</p>
+</details>
+3. Ensure the VLAN is assigned to blade 4.
+<br/>
+(Dell PowerConnects allow all VLANs in the VLAN database in trunk mode)
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface Gi1/0/4
+console(config)# description usefuldescription
+console(config)# switchport mode trunk
+console(config)# exit
+
+console#show interfaces switchport Gi1/0/4
+
+Port: Gi1/0/4
+VLAN Membership Mode: Trunk Mode
+Access Mode VLAN: 1 (default)
+General Mode PVID: 1 (default)
+General Mode Ingress Filtering: Enabled
+General Mode Acceptable Frame Type: Admit All
+General Mode Dynamically Added VLANs:
+General Mode Untagged VLANs: 1
+General Mode Tagged VLANs:
+General Mode Forbidden VLANs:
+Trunking Mode Native VLAN: 1 (default)
+Trunking Mode Native VLAN Tagging: Disabled
+Trunking Mode VLANs Enabled: All
+..omitted..
+
+```
+
+</p>
+</details>
+4. Identify the uplink port and make sure the VLAN is assigned to it.
+<details><summary>show</summary>
+<p>
+
+```bash
+console# show  lldp remote-device all
+
+..omitted..
+Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
+
+```
+
+</p>
+</details>
+5. Verify layer 2 connectivity on the switch.
+```bash
+console#show mac address-table | include 165
+
+Aging time is 300 Sec
+
+
+165       84C1.C142.3E85        Dynamic     Te1/0/2
+165       F48E.3840.A727        Dynamic     Gi1/0/1
+165       F48E.3840.A728        Dynamic     Gi1/0/2
+165       F48E.3840.A729        Dynamic     Gi1/0/3
+165       F48E.3840.A730        Dynamic     Gi1/0/4
+
+```
+
+</p>
+</details>
 
 ## Anatomy of a running config
 
