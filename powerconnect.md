@@ -429,6 +429,8 @@ Te1/0/2    1       XX:XX:XX:XX:XX:XX     xe-6/0/2            juniper-vc0
 </p>
 </details>
 5. Verify layer 2 connectivity on the switch.
+<details><summary>show</summary>
+<p>
 
 ```bash
 console#show mac address-table | include 165
