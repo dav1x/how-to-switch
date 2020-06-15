@@ -350,6 +350,51 @@ Excessive Collisions: ......................... 0
 </p>
 
 
+Update switch firmware:
+
+<summary>show</summary>
+<p>
+
+```bash
+console# copy running-config startup-config
+
+console#copy tftp://10.10.10.200/PC8024v5.1.16.1.stk image
+Transfer Mode.................................. TFTP
+Server IP Address.............................. 10.10.10.200
+Source File Path............................... /
+Source Filename................................ PC8024v5.1.16.1.stk
+Data Type...................................... Code
+Destination Filename........................... image
+
+Management access will be blocked for the duration of the transfer
+Are you sure you want to start? (y/n) y
+TFTP code transfer starting
+12309128 bytes transferred
+Verifying CRC of file in Flash File System
+Distributing the code to the members of the stack!
+File transfer operation completed successfully.
+
+console# show version
+Image Descriptions
+image1 : default image
+image2 :
+Images currently available on Flash
+--------------------------------------------------------------------
+unit image1     image2    current-active  next-active
+--------------------------------------------------------------------
+1    4.2.1.3    5.1.16.1  image1          image1
+
+console# boot system image2
+Activating image image2 ..
+
+console#update bootcode
+Update bootcode and reset (Y/N)?y
+
+```
+
+</p>
+
+
 ## Scenario
 You have been tasked with adding routable VLAN 165 to a switch and ensure connectivity. You need to identify which port is the uplink and add the applicable VLAN to the host ports in question. Blades 1, 2, 3 will be used for VLAN 165 as the native VLAN. Blade 4 will tag the VLAN inside the operating system.
 
@@ -496,4 +541,3 @@ snmp-server engineid local 800002a203f48e3840a725 # SNMP information
 snmp-server community "switches" ro ipaddress 10.x.y.55
 exit
 ```
-
