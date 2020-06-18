@@ -1,5 +1,5 @@
 # Dell Force10 how-to
-For a copy of this page without the dropdowns see [the answer page](force10-answers.md)
+For a copy of this page with the dropdowns see [the question page](force10.md)
 
 ## Basic CLI usage
 

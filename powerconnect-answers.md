@@ -1,4 +1,5 @@
 # Dell PowerConnect how-to
+For a copy of this page with the dropdowns see [the questions page](powerconnect.md)
 
 ## Basic CLI usage
 
