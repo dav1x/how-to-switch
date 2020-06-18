@@ -1,4 +1,10 @@
 # Dell PowerConnect how-to
+For a quick Dell switch interface:
+
+```bash
+podman run -P -d -e SWITCH_MODEL="dell_generic" internap/fake-switches
+```
+
 For a copy of this page without the dropdowns see [the answer page](powerconnect-answers.md)
 
 ## Basic CLI usage
