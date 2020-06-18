@@ -171,9 +171,8 @@ Dell(conf-if-vl-183)#exit
 </p>
 </details>
 
-Configure a switch port for trunk mode:
+Configure a tagged VLAN for a Port:
 <br/>
-(Dell PowerConnects allow all VLANs in the VLAN database in trunk mode)
 <details><summary>show</summary>
 <p>
 
@@ -473,7 +472,7 @@ stack-unit 0 port 49 portmode quad
 !
 stack-unit 0 port 53 portmode quad
 !
-interface TenGigabitEthernet 0/1
+interface TenGigabitEthernet 0/1  # Internal switchport
  description bm-c2hyp-pr
  no ip address
  mtu 12000
@@ -482,7 +481,7 @@ interface TenGigabitEthernet 0/1
  flowcontrol rx on tx off  
  no shutdown
  !
- interface TenGigabitEthernet 0/38
+ interface TenGigabitEthernet 0/38 # External uplink port
   no ip address
   mtu 12000
   portmode hybrid
@@ -490,7 +489,7 @@ interface TenGigabitEthernet 0/1
   flowcontrol rx on tx off  
   no shutdown
   !
-  interface ManagementEthernet 0/0
+  interface ManagementEthernet 0/0 # Management IP address
    ip address 10.19.0.96/24
    no shutdown
   !       
@@ -499,24 +498,24 @@ interface TenGigabitEthernet 0/1
   !untagged TenGigabitEthernet 0/9-11,37-38
    no shutdown
   !
-  interface Vlan 150
+  interface Vlan 150  # Interfaces are configured in VLANs
    no ip address
    tagged TenGigabitEthernet 0/8,13-16,20,24,29-32
    shutdown
   !
-  management route 0.0.0.0/0 10.19.0.254
+  management route 0.0.0.0/0 10.19.0.254  # management default GW
   !
   service-class dynamic dot1p
   !
-  snmp-server community syseng rw
+  snmp-server community sys rw  # SNMP information
   !
-  ntp server 10.5.27.10
+  ntp server 10.5.27.10 # NTP info
   !
   clock timezone Eastern -5
   !
   wred-profile mem
   !
-  no dcb enable
+  no dcb enable  # Datacenter bridging config
   !
   dcb-map FLEXIO_DCB_MAP_PFC_OFF
    no pfc mode on
@@ -536,7 +535,7 @@ interface TenGigabitEthernet 0/1
    boot-type normal-reload
    config-scr-download enable
   !
-  no iscsi enable
+  no iscsi enable  # iSCSI automation disabled
   !
   end
 ```
