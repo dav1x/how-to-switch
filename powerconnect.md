@@ -2,7 +2,9 @@
 For a quick Dell switch interface:
 
 ```bash
-podman run -P -d -e SWITCH_MODEL="dell_generic" internap/fake-switches
+podman run -p 8022:22 -d -e SWITCH_MODEL="dell_generic" internap/fake-switches
+ssh root@localhost -p 8022
+password is root
 ```
 
 For a copy of this page without the dropdowns see [the answer page](powerconnect-answers.md)
