@@ -1,5 +1,6 @@
 # Dell Force10 how-to
 For a copy of this page without the dropdowns see [the answer page](force10-answers.md)
+Additionally, for a more complete guide of commands see [the vendor documentation](https://www.dell.com/support/manuals/us/en/04/force10-mxl-blade/mxl_9.7.0.0_cli_pub-v1/accessing-the-command-line?guid=guid-37955b2d-62a4-4703-8790-f8732cd141c1&lang=en-us)
 
 ## Basic CLI usage
 Once you log on to the switch you need to move to privileged mode to configure things.
@@ -157,6 +158,19 @@ Dell#configure
 Dell(conf)#interface te0/17
 Dell(conf-if-te-0/17)#shutdown
 ```
+
+Bring up a port:
+<br/>
+(native)
+<details><summary>show</summary>
+<p>
+
+```bash
+Dell#configure
+Dell(conf)#interface te0/17
+Dell(conf-if-te-0/17)#no shutdown
+```
+
 
 </p>
 </details>

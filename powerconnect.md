@@ -15,6 +15,7 @@ Password:
 ```
 
 For a copy of this page without the dropdowns see [the answer page](powerconnect-answers.md)
+Additionally, for a more complete guide of commands see [the vendor documentation](https://www.dell.com/support/manuals/us/en/04/force10-mxl-blade/mxl_9.7.0.0_cli_pub-v1/accessing-the-command-line?guid=guid-37955b2d-62a4-4703-8790-f8732cd141c1&lang=en-us) 
 
 ## Basic CLI usage
 
@@ -163,6 +164,23 @@ Shut down a port:
 console# configure
 console(config)# interface Gi1/0/1
 console(config)# shutdown
+console(config)# exit
+```
+
+</p>
+</details>
+
+
+Bring up a port:
+<br/>
+(native)
+<details><summary>show</summary>
+<p>
+
+```bash
+console# configure
+console(config)# interface Gi1/0/1
+console(config)# no shutdown
 console(config)# exit
 ```
 
