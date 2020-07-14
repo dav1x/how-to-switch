@@ -162,6 +162,8 @@ Shut down a port:
 ```bash
 root@juniper-vc0# set interfaces xe-0/0/1.0 disable
 ```
+</p>
+</details>
 
 Bring up a port:
 <br/>
