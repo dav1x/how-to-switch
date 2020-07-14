@@ -7,6 +7,13 @@ ssh root@localhost -p 8022
 password is root
 ```
 
+Once you log on to the switch you need to move to privileged mode to configure things.
+(There is no enable password)
+```
+switch>en
+Password:
+```
+
 For a copy of this page without the dropdowns see [the answer page](powerconnect-answers.md)
 
 ## Basic CLI usage

@@ -2,6 +2,12 @@
 For a copy of this page without the dropdowns see [the answer page](force10-answers.md)
 
 ## Basic CLI usage
+Once you log on to the switch you need to move to privileged mode to configure things.
+(There is no enable password)
+```
+switch>en
+Password:
+```
 
 Show the running config:
 <details><summary>show</summary>
